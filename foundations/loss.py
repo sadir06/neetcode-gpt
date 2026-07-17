@@ -27,3 +27,10 @@ class Solution:
         y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
         L = -np.mean(np.sum(y_true * np.log(y_pred), axis=1))
         return np.round(L, decimals=4)
+
+    """
+    Notes:
+    Cross Entropy Loss actually comes from information theory! It measuers the "suprise" of seeing the true labels, given the model's prediction (hence the Entropy)
+    Using ln(x) is great here, as it gives low penalties for high correct probabilities and high penalties when we have a lower confidence. Calibrates the models well. 
+    In practice, we add in a small epsilon to aboiv computing ln(0) which is undefined (would be negative infinity)
+    """
