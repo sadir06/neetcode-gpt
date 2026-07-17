@@ -31,3 +31,11 @@ class Solution:
                 gradient = self.get_derivative(prediction, Y, N, X, j)
                 initial_weights[j] -= self.learning_rate * gradient
         return np.round(initial_weights, 5)
+
+    
+    """
+    Notes:
+    This is the foundation of our Linear Regression Training. The pattern here (compute gradient per parameter, update each one) is exactly what optimiser.ste() does under the hood in PyTorch. The difference is that PyTorch automates the gradient computation with autograd. 
+    Each weight is updated independently using hte gradient descent rule. This is called batch gradietn descent because we use all N samples for each update.
+    Training computes the partial derivative of the loss with respect to EACH weight, which is just a dot product between the error vector and the feature column. 
+    """
