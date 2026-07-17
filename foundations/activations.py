@@ -16,7 +16,7 @@ class Solution:
         # z is a 1D NumPy array
         # Formula: max(0, z) element-wise
         # Given an input numpy array z, we have to return 0 for negative inputs and the input itself for positive values
-        return np.maximum(0, z)
+        return np.maximum(0, z) # np.maximum does an elementwise comparison with 0. 
     """
     Notes:
     We have these tricks because we don't want the model to just learn linear behaviours, we want it to understand more complex correlations
