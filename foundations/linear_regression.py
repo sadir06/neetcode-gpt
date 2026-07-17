@@ -15,3 +15,11 @@ class Solution:
         error = (ground_truth - model_prediction)
         MSE = np.mean(error * error)
         return np.round(MSE, decimals=5)
+
+    """
+    Notes:
+    Linear Regression is the simplest predictive model. Given an input maxtrix X of shape (N, d)
+    Each prediction is a weighted sum of the input features. Large positive weights means that features strongly pushes up the prediction, large negative weight pushes it down. There is no bias term in this formula, but we can incorporate bias by adding a column of ones to X. The model will learn what to do with these. 
+    Mean Squared Error is useful because all errors stay positive and don't cancel out, and this penalizes large errors more than small ones.
+    This is actually the same operation that happens inside every nn.Linear layer!
+    """
