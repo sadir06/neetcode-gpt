@@ -21,3 +21,12 @@ class Solution:
         else: # relu
             return np.round(np.maximum(0, y), 5)
 
+        """
+        Notes:
+        A neuron/perceptron is the simplest unit in a neural network. it mimics a biological neuron, receving signals, processing them, and firing. 
+        The Sigmoid activation squishes any real number into the range(0, 1)
+        The ReLU is an activation function that simply clips any values below 0 back up to 0. This add's non-linearity into the model.
+        Stacking many neurons into layers is how we build deep neural networks. 
+        The dot product measures similarity between the input and the weight vector. Training adjusts w so that this similarity is high for inputs the neuron should activate on. 
+        """
+
