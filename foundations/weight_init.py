@@ -53,6 +53,6 @@ class Solution:
     Notes:
     If we try to stack 10 layers with a normal distribution weights -> the activations will either explore to inifnite or collapse to 0. So, we just have to initialise our weights properply!
     This is why we can use Xavier or Kaiming initialisatoin! These set the std so that teach layer preserves the variance of its input. ReLU zeros out roughly half the neurons so that the variance drops by half at every layer, and Kaiming compensates by doubling the numerator relative to Xavier. 
-    
-    
+    Every nn.Linear layer in the GPT model uses initiazation under the hood. PyTorch defaults to Kaimings for linear layers, and GPT-2 actually uses scaled initialization to prevent the residual stream from growing too large in deep transformers. 
+    With random init, stds grow to thousands in just 5 layers, but with Kaiming, they stay near 1.0 regardless of depth.
     """
