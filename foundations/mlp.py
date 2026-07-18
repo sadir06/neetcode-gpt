@@ -23,4 +23,5 @@ class Solution:
     Notes:
     MLP isjust connecting layers of neurons end to end. The output of one layer feeds into the input of the next. 
     Mathematically, it's just repeated matrix multiplication with activations in between, but stacking layers lets the network learn patterns that a single neuron never could. 
+    ReLU is actually only applied on hidden layers, we don't want it affecting our output layer.
     """
