@@ -28,9 +28,9 @@ class Solution:
         z1 = x @ W1.T + b1 # pre-actiation layer1
         a1 = np.maximum(z1, 0) # ReLU Activation Layer
         z2 = a1 @ W2.T + b2 # Output (prediction)
-        loss = np.mean((z2 - y_true) ** 2)
+        loss = np.mean((z2 - y_true) ** 2) # MSE
 
-        #Backward Pass
+        # Backward Pass
         n = len(y_true) if y_true.ndim > 0 else 1
         dz2 = 2 * (z2 - y_true) / n # dL/dz2
         dW2 = dz2.reshape(-1, 1) @ a1.reshape(1, -1)
@@ -57,4 +57,7 @@ class Solution:
     Notes:
     While PyTorch computes gradients automatically with loss.backward(), it's useful to understand the manual process. 
     If z1 <= 0 for every input in the training set, that neuron will never update, and it's gradient is always 0. This is why weight initialization matterms, nad why variants like GeLU and Leaky ReLU
+    Multi-layer backprop is the same chain rule as for a single-neuron, just applied to more links. Each layer's weight gradient is the outer product of hte error signal arriving from above and the activation arriving from below. 
+    The ReLU still causes the dead neuron problem. 
+    Saving intermediate values (z1, a1) during the forward pass is essential because we need them to compute the gradients during the bacward pass. This is why training uses a lot more memory than inference. 
     """
