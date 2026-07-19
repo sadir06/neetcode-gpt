@@ -10,17 +10,18 @@ class Solution:
         # During inference: normalize using running stats (no batch stats needed)
         # Apply affine transform: y = gamma * x_hat + beta
         # Return (y, running_mean, running_var), all rounded to 4 decimals as lists
+        # They didn't give us numpy arrays we have to change everything
         x = np.array(x)
         gamma = np.array(gamma)
         beta = np.array(beta)
         running_mean = np.array(running_mean, dtype=np.float64)
         running_var = np.array(running_var, dtype=np.float64)
         epsilon = 1e-5
-         
+
         if not momentum or momentum == 0:
             momentum = 0.1
         if training:  
-            mean = np.mean(x, axis=0) # Mean
+            mean = np.mean(x, axis=0) # Mean, make sure that it is on axis 0 so that wedo batch norm, axis=1 is layer norm. 
             var = np.var(x, axis=0) # Var
             x_hat = ((x - mean) / np.sqrt(var + epsilon)) # Normalise
             # We also need the running statistics for use during training
