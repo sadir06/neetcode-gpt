@@ -22,7 +22,5 @@ class Solution:
     Notes:
     Modern LLMs don't use layer/bach norm. Instead of these, we use RMS Normalization, which drops the mean subtraciton entirely. Instead of subtracting the mean, dividing by standorddeviation and scaling ans shifting, we skip the subtraction and remove beta entirely. We only need the root mean square. 
     This means fewer parameters and less memory. Since we are also doing less operations, we are a lot faster too. 
-
-
-
+    RMSNorm shows us that it's not re-centering in LayerNorm that stabilizes training, its the re-scaling (dividing by a magnitude measure). So, we only keep the re-scaling, using fewer operations and fewer parameters. 
     """
