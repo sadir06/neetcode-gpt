@@ -23,6 +23,7 @@ class Solution:
     Notes:
     Layer normalizatoin fixes our values in the network going crazy high or small. 
     We re-centre and re-scale each layer's output so the values stay in a stable range. Every transformer block uses it twice, so you need it before building attention. 
-
-
+    We learn parameters that could undo the normalisation because the network might need activations with a non-zero mean or non-unit variance for certain layers. The beta and gamma parameters give it that flexibility. 
+    Layer norm is different to batch norm; layer norm normalizes across the feature dimension (each sample's statistics come from its own features), whereas batch norm normalises across the batch dimension (each feature's statistics come from the batch)
+    The epsilon term might be small and seem insignificant, but prevents division by 0 when all features have the same value, ensuring that our model doesn't crash with a divide by 0 error. 
     """
