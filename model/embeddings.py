@@ -18,9 +18,12 @@ class Solution:
         matrix = np.array(output)
 
         return np.round(matrix, 5)
+        # We could just have done this: return npo.round(embeddings[token_ids], 5), but it's essentially the same. I'm honestly so suprised to see how optimised numpy is for coding, it's so easy to work with these arrays!
     """
     Notes:
     Here, we'll start processing text with neural nets, from raw words down to the positional encodings used in transformers. 
     Word embeddings amap each token to a dense vector where similar words end up close together. These embeddings emerge through training, and similar words get grouped closer and closer together. This is incredibly useful to "teach" the model how to form correlations with different words. 
-
+    One-hot encoding is when a vocabulary of V words becomes V-dimentional vecotrs with a single 1, and the rest 0s. 
+    Embedding lookup is just array indexing, making it O(1) per token. This is far more efficient than the mathematically equivalent one-hot matrix multiply.
+    The embedding matrix is one of hte largest components in language models: GPT-2's is 50,257 x 768 = 38 million parameters. For reference, GPT2 small is 124 million parameters. 
     """
