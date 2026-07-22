@@ -35,4 +35,7 @@ class Solution:
     """
     Notes:
     Training time! Everything is useless unless the model actually learns from the data. 
+    The training loop pattern (forward, loss, backward, update) is universal across all gradient-based models, from linear regression to billion-parameter transformers.
+    Vectorized gradient computation using X.T @ error replaces the per-weight loops, turning O(d @ N) separate dot produucts into a single matrix multiply.
+    Initialising the weights to 0s works for linear regressoin but causes symmetry problems in deeper networks, where random initialisation is needed to break the symmetry!
     """
