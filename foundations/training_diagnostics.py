@@ -67,5 +67,7 @@ class Solution:
     Notes:
     Our training loop needs to actually be good. A single initialisation mistake is the difference between GPT and a broken model. 
     Training diagnostics is inspecting different things to figure out why a model isn't learning. It's just diagnostics. 
-
+    Activation std should be in a reasonable range (0.1 to 10).
+    Dead neurons are permanent. Gradient norms tell you whether the learning signal is reaching the early layers. A norm near 0 means the network isn't learning; a norm in the thousands mena's it's unstable. Thi
+    Some failure modes are more severe than others, and should be caught first. 
     """
