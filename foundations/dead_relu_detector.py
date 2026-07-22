@@ -53,5 +53,8 @@ class Solution:
     How can we diagnose the "dead_fraction" metric? Neural nets fail siltely, even if your models training runs, 60% of your neurons might not be doing anything. 
     If a neuron's pre-activation input is negative for every sample in the batch, its output is 0 for every sample. It's gradient is also 0 so its weights never update. The neuron is dead. 
     Bad weight initialisation can do it on the first forward pass. Once it dies, the damage cascades: downstream layers lose an input, increaseing the chance that their neurons die too. 
-
+    A dead ReLU neuron ouptuts 0 for every sample in the batch, receives 0 gradient and never recovers. 
+    The severity pattern determines the fix, widespread death needs a new activataion function, eadly-layer death needs re-initialisation, and depth-correlated death needs a lower learning rate. 
+    Detection requires checking hte ReLU layer, and not the Linear layer. The linear output being negative is exepctged; it's the ReLU output being 0 for all samples that indicates death for a neuron. 
+    GELU and others avoid this problem by having non-zero gradients for negative inputs. 
     """
