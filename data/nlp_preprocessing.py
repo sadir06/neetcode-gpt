@@ -21,6 +21,8 @@ class Solution:
     """
     Notes:
     Word embeddings give each token a dense vector, but we need to first decide what counts as a token. Tokenization is all about splitting raw text into pices and assigning each piece an integer ID. This is the first stpe of the NLP pipeline, text goes in, and a sequence of integers comes out. 
-
+    NLP preprocessing converts variable-length strings into fixed-size numerical tensors that neural networks can process. 
+    Vocab IDs starta at 1 so that 0 serves as a padding token, allowing models to mask and ignore padding positions. 
+    Sorting the vocab ensures deterministic ID assignment, which is critical for reproductibility and testing. 
 
     """
