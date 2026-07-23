@@ -27,5 +27,7 @@ class Solution(nn.Module):
     """
     Notes:
     Sentiment analysis the NLP model being able to tell if our input text (e.g. a movie review) is positive or negative
-
+    Averaging word embeddings is the simplest way to create fixed-size sentence representations from valriable-length inputs. 
+    Bag-of-words models ignore word order but work well when individual words carry strongs signals, as in sentiment analysis. 
+    The embedding layer learns taskspecific representations during training, so "great" and "excellent" develop similar vectors without any manual feature engineering. 
     """
