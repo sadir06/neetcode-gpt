@@ -22,7 +22,7 @@ class Solution(nn.Module):
         x = self.relu(x)
         x = self.dropout(x)
         x = self.projection(x)
-        x = self.sigmoid(x)
+        x = self.sigmoid(x) # Sigmoid produces independent probabilities for each class, while softmax produces a distribution that sums to 1. 
 
         return torch.round(x, decimals=4)
         
@@ -32,4 +32,7 @@ class Solution(nn.Module):
     Here we will build MNIST! One of the most basic neural nets, is a digit classifier, evey single ML Engineer has solved this. This is where deep learning started beating traditional algorithms. 
     We flatten the 28x28 piles into a flat tensor of 784 values. We have an input, hidden and output layer with 10 possible output. We can use droput to prevent overfitting (drops 50% of the digits during training).
     We have an inpuy 784 values, then a linear layer that projects 512, ReLU to add non-linearity, dropout to prevent overfitting (disable neurons from learning), and the final 10 sigmoid outputs (0-9) represent thye confidence that the image shows that digit. 
+    2 layer ML with dropout achieves very strong results on MNIST, shows that even simple architectures can solve real problems (bitter lesson!)
+    Drouput regularization prevents overfitting by forcing hte network to learn distributed representations rather than relying on individial neurons. 
+    The nn.Module pattern is the standard PyTorch model structure used very commonly. 
     """
