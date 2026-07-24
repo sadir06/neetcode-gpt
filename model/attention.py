@@ -41,5 +41,7 @@ class SingleHeadAttention(nn.Module):
     Notes:
     Real language understanding requires knowing which words relate to which. The core mechanism here is self-attention, this is what makes transformers work. 
     We have 3 vectors Q, K, V, and which are are hte input multiplied by the respective weights. Applying attention to them is taking hte softax of a specific function and multiplying by the values vector, which just depends on what you are paying attention to. 
-    
+    Self-attention computes pairwise similarity between all tokens using QK^t, then uses these similarieis to take a weighted average of value vectors. 
+    Scaling by sqrt(dk) is necessary, attention weights become too "sharp" (one token gets all the weight), preventing the model from learning smooth attentoin patterns. 
+    Causual masking ensure autoregressive behavior: token t's output depends only on tokens 0 through t, which is what makes left-to-right text generation possible. 
     """
