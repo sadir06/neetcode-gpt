@@ -54,4 +54,9 @@ class MultiHeadedSelfAttention(nn.Module):
     Notes:
     A signle attention head can only focus on one type of relationship, but obviously language has many patterns. So we use multi-headed attention, which runs several attentoin heads in paralle, with each learning different patterns, and then combines them. GPT-3 uses 96 heads working simultaenously. 
     Wo is a learned output projection. Each head independently learns which tokens to attend to. Their outputs are concatenated and passed through a final linear projection that mixes information across heads. 
+    Multi-headed attention runs several attention heads in parallel, with a learned output projection that combined their outputs. 
+    Each head operates on a d/h dimensional subspace, and concatenation reconstructs the full dimension, making it a drop-in replacement for single head attention. 
+    Using nn.ModuleList (instead of a plain python list) is essential here os htat PyTorch can track and update each head's parameters during training. 
+    Essentially, given h heads, nad dimension d, we create h heads each with dimension d/h, na deach run indepoendently on the same input. Then we concatenate all the head outputs along the feature dimension. Then we apply an output projection Wo to combine the heads. 
+    This way different heads learn different htings. Some heaads learn syntactic relationships, some learn semantic relationships, and some learn positional patterns. A single head would have to compromise between all these patterns, which multiple heads specialise. 
     """
