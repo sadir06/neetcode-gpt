@@ -28,5 +28,7 @@ class Solution:
     """
     Notes:
     BPE is the tokenizer used by production LLMs, but character-level encoding, where every unique character gets its own integer is the simpler versoin. 
-    
+    A character-level vocab is the simplest tokenization approach, with vocab size equal to the numbero f unique characters in the training data. 
+    The stoi/itos pair enables lossless round-trip conversion between text and integer sequences, which is a hard requirement for any tokenizer. 
+    Sorting the unique characters ensures deterministic ID assignment. Without sorting, the same text could produce different vocabularies across runs. 
     """
