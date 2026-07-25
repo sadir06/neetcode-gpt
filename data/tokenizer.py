@@ -43,7 +43,9 @@ class Solution:
     Notes:
     Byte Pair Ecoding solves the problem of the model not encountering words it has never seen before. It learns a volcabulary of SUBWORD tokens. GPT, LLaMa and most modern LLMs use BPE tokenization!
     Split the corups into individual characters, count the frequency of every adjacent pair of tokens,nad merge hte most frequeient pair inot a new token. Replace all non-overlapping occurrences of htat pair, and repeat. 
-
-
-
+    Each merge creates a new token, and common words like "the" become single tokens after just a few merges. Rare words stay as subword pices, which is exactly what we want, where common patterns get compressed and rare words decompose into known subcomponents. 
+    GPT-2 uses about 50,000 merges, with a vocabulary of 50,257 tokens. The encoding process replays the merges in order to tokenize any input text. 
+    This is actually a greedy algorithm, because we merge only the most frequent pairs, achieving a vocabulary htat compresses common patterns while decomposing rare words into known pieces. 
+    Non-overlapping left-to-right merging ensures deterministic, reproducible results. 
+    BPE elmiminates out-of-vocab problems: any input can be encoded as a sequence of subword tokens, even words the model has never seen before. 
     """
