@@ -1,0 +1,32 @@
+from typing import Dict, List, Tuple
+
+class Solution:
+    def build_vocab(self, text: str) -> Tuple[Dict[str, int], Dict[int, str]]:
+        # Return (stoi, itos) where:
+        # - stoi maps each unique character to a unique integer (sorted alphabetically)
+        # - itos is the reverse mapping (integer to character)
+        temp = list(text)
+        hashSet = set(temp)
+        vocab = list(hashSet)
+        vocab.sort()
+        stoi, itos = {char: i for i, char in enumerate(vocab)}, {i: char for i, char in enumerate(vocab)} # In Python 3.7+, the ordering from a list is maintained in a dict
+        return stoi, itos
+
+    def encode(self, text: str, stoi: Dict[str, int]) -> List[int]:
+        # Convert a string to a list of integers using stoi mapping
+        output = []
+        for char in text:
+            output.append(stoi[char])
+        return output
+    def decode(self, ids: List[int], itos: Dict[int, str]) -> str:
+        # Convert a list of integers back to a string using itos mapping
+        output = []
+        for num in ids:
+            output.append(itos[num])
+        return "".join(output)
+
+    """
+    Notes:
+    BPE is the tokenizer used by production LLMs, but character-level encoding, where every unique character gets its own integer is the simpler versoin. 
+    
+    """
