@@ -24,6 +24,7 @@ class Solution:
 """
 Notes:
 Now that we have an encoded sequence of integers from text, we need to slice htat sequence into training examples. The key insight here is that a language model's training data is just the same sequence shifter by one position. The model learns to predict each next token given the tokens before it. This loader takes pre-tokenized integer sequences, and produces batches of these (input, target) pairs, ready for training. Here, we are building a batch loader that produces training-ready (X, Y) pairs. This is only for training. 
-
-
+    This data loader creates input-target pairs by shifting the input window by one position, which is the standard setup for next token prediction. This way, the model will realise that for this set of tokens, the next token generated should be i + 1 + context_length. 
+    Random starting positions ensure the model sees diverse training data each iteration, preventing overfitting. 
+    Each context window of length C provides C independed training examples, making language model training data-efficient. 
 """
