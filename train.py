@@ -32,6 +32,7 @@ class Solution:
 """
 Notes:
 This is where it all comes together!!! Now that GPT can do a forward pass, we can compute loss, do a backward pass, and adjust weights. The model will start with random guessing but slowly become better and better. 
-
-
+Training GPT uses the universal loop: sample batch, forward loss, backward, step. The only language-model-specific part is the reshape for cross-entropy.
+Cross-entropy loss treats each position independently: a batch of B sequences of length T yields B X T classification examples. 
+Seeting the manual seed gives each epoch a different but reproducible batch, balancing randomness with reproducibility. 
 """
