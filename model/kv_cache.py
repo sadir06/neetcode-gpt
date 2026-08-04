@@ -56,4 +56,8 @@ Notes:
 Now, our GPT generates text, but it's incredibly slow, because each new token recomputes attention for ALL previous tokens. This is, as you can expect, incredibly inefficient. Instead of this, we can apply a KV-cache to fix this (as fetching from cache is infinitely faster than running mult-headed attention many times). 
 
 Basically during autoregressive generation (one new token at a time), each new token runs a full forward pass. Inside each attention layer, the model computes Q, K, V from the ENTIRE context. This is O(N^2), as QKV are all computer for all N tokens, and the attention matrix is N x N. Generating 100 tokens means recomputing 1 + 2 + 3 + .... + 100 = 5050 times across all steps. However, since KV for previous tokens don't change between generation steps, and only the new token's K and V need computing, instead of recomputing all N key and value vectors, we cache the ones from previous steps and append only the new token's K and V (an absolutely TINY cost)! This turns the attention computation from O(N^2) to just O(N)! The new query only needs to attend over the growing cache, not recompute everything. 
+
+No causual mask is needed in the cached forward pass: the cache natuarally contains only pas tokens, enforcing the causality by construction!
+
+The memory cost is O(N * d) per layer, which is why long context windows are expensive, we get a bigger and bigger KV cache. This motivates optimisations like Grouped Query Attention (fewer KV heads = smaller cache). 
 """
