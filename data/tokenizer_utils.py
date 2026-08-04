@@ -47,5 +47,4 @@ class Solution:
     The model never sees individual digits consistently. This is a huge problem for breaking down different numbers, means that numbers lose their meaning, as a 142 might just turn into a 42, with the 1 as another token. 
     Fertility (tokens per word) measures how efficient a language is for a given tokenizer. English averages around 1.3 in GPT-4, while other languages are a lot higher
     Real BPE tokenizers use merge-order priority than a simple longest match, but the edge cases are similar. 
-
     """
