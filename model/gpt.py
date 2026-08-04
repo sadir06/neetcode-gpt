@@ -105,3 +105,12 @@ class GPT(nn.Module):
             embedded = embedded + self.attention(self.first_norm(embedded)) # skip connection
             embedded = embedded + self.linear_network(self.second_norm(embedded)) # another skip connection
             return embedded
+
+"""
+Notes:
+GPT composes token embeddings, position embeddings, nad a stack of transformer blocks (each with Wo output projection in multi-head attention), final normalisation, and vocabulary projection into raw logits. 
+
+Learned position embeddings let the model discover its own positional representation during training. 
+
+The same architecture scales from tiny models to larger ones, simply by increasing the model dimension, number of blocks and number of heads. 
+"""
